@@ -5,7 +5,7 @@ export default function App() {
   //   alert("You can Only add Numbers or it will not work");
   // }, []);
 
-  const [PerHourWageValue, setPerHourWageValue] = useState(0);
+  const [PerHourWageValue, setPerHourWageValue] = useState(1);
 
   const PerHourWageref = useRef(null);
   const HoursInputValue = useRef(0);
@@ -45,6 +45,8 @@ export default function App() {
           ...prev,
           [e.target.placeholder + "Calculated"]: e.target.value,
         };
+
+
       if (e.target.placeholder == "Days")
         return {
           ...prev,
@@ -66,9 +68,12 @@ export default function App() {
           [e.target.placeholder + "Calculated"]: e.target.value * 24 * 356,
         };
     });
-
-    setTotalHousWorkd(b);
   }
+
+  useEffect(() => {
+    setTotalHousWorkd(b)
+  }, [FormDataCalculated])
+  
 
   let b = 0;
   const [TotalHousWorkd, setTotalHousWorkd] = useState(0);
@@ -80,9 +85,8 @@ export default function App() {
     b = Number(element) + b;
   }
 
-console.log(b )
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen p-2">
       <div className="border flex flex-col">
 
         <div className="flex gap-x-3">
